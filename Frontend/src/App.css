@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+/* Main container layout */
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Left and Right Panels */
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+}
+
+
+main .left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+}
+
+.left .review {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.left .review:hover {
+  background-color: #0056b3;
+}
+
+
+.left .code,
+.code pre,
+.code pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 1rem;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+main .right {
+  background-color: #343434;
+  padding: 1rem 2rem;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: auto;
+  color: white;
+  border-radius: 0.7rem;
+}
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  main {
+    flex-direction: column;
+    height: auto;
+    width: 95vw;
+    padding: 1rem;
+  }
+
+  main .left,
+  main .right {
+    width: 100%;
+    height: 45vh;
+  }
+
+  main .left .review {
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.6rem 1.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    gap: 1rem;
+  }
+
+  main .right {
+    font-size: 1rem;
+  }
+
+  .code pre {
+    font-size: 0.8rem;
+  }
+}
