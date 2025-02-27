@@ -9,7 +9,6 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  
   const [code, setCode] = useState(` function multNumbers(p , q) {
     answer = p * q
     return answer
@@ -22,13 +21,21 @@ function App() {
   }, []);
 
   async function reviewCode() {
-    const response = await axios.post("http://localhost:3000/ai/get-review", {
-      code,
-    });
+    // const response = await axios.post(
+    //   "https://code-checker-eknv.onrender.com",
+    //   {
+    //     code,
+    //   }
+    // );
+
+    const response = await axios.post(
+      "https://code-checker-eknv.onrender.com/ai/get-review",
+      { code }
+    );
+    
+
     setReview(response.data);
   }
-
-
 
   return (
     <>
@@ -65,4 +72,3 @@ function App() {
 }
 
 export default App;
-
