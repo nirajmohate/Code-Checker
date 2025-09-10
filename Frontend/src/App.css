@@ -85,6 +85,73 @@ main .right {
   border-radius: 0.7rem;
 }
 
+/* Dropdown styling */
+.dropdown {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: linear-gradient(90deg, #f9f9f9, #f1f1f1);
+  cursor: pointer;
+  transition: 0.3s;
+  outline: none;
+}
+
+.dropdown:hover {
+  border-color: #4cafef;
+  box-shadow: 0 0 6px rgba(76, 175, 239, 0.4);
+}
+
+.dropdown:focus {
+  border-color: #3b8ad9;
+  box-shadow: 0 0 8px rgba(59, 138, 217, 0.5);
+}
+
+/* Convert button */
+.convert-btn {
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(90deg, #34c759, #28a745);
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.convert-btn:hover {
+  background: linear-gradient(90deg, #28a745, #1e7e34);
+  transform: translateY(-1px);
+}
+
+.convert-btn:active {
+  transform: translateY(0px);
+}
+
+/* Output box */
+.output-box {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  min-height: 100px;
+  white-space: pre-wrap;
+  border: 1px solid #333;
+  font-family: "Fira Code", monospace;
+}
+
+/* Code-specific output */
+.code-output {
+  overflow-x: auto;
+}
+
+
+
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
