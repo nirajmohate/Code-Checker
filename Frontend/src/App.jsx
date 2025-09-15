@@ -5,6 +5,9 @@ import prism from "prismjs";
 import axios from "axios";
 import "./App.css";
 
+// ✅ Get backend URL from .env
+const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
 function App() {
   const [code, setCode] = useState(`function addNumbers(a , b) {
   return a + b
@@ -25,9 +28,7 @@ function App() {
   async function reviewCode() {
     try {
       setLoadingReview(true);
-      const response = await axios.post("http://localhost:3000/ai/get-review", {
-        code,
-      });
+      const response = await axios.post(`${API_BASE}/ai/get-review`, { code });
       setReview(response.data);
     } catch (err) {
       console.error("Review error:", err);
@@ -41,7 +42,7 @@ function App() {
   async function convertCode() {
     try {
       setLoadingConvert(true);
-      const response = await axios.post("http://localhost:3000/ai/convert", {
+      const response = await axios.post(`${API_BASE}/ai/convert`, {
         code,
         targetLang: language,
       });
@@ -82,7 +83,7 @@ function App() {
 
           {/* Buttons */}
           <div onClick={reviewCode} className="review">
-            Review
+            {loadingReview ? "⏳ Reviewing..." : "Review"}
           </div>
 
           <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
@@ -97,7 +98,7 @@ function App() {
               <option value="Go">Go</option>
             </select>
             <button onClick={convertCode} className="convert-btn">
-              Convert
+              {loadingConvert ? "⏳ Converting..." : "Convert"}
             </button>
           </div>
         </div>
