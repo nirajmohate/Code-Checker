@@ -5,7 +5,7 @@ import prism from "prismjs";
 import axios from "axios";
 import "./App.css";
 
-// ✅ Get backend URL from .env
+//  Get backend URL from .env
 const API_BASE = import.meta.env.VITE_BACKEND_URL;
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   const [converted, setConverted] = useState("");
   const [language, setLanguage] = useState("Python");
 
-  // ✅ separate loading states
+  //  separate loading states
   const [loadingReview, setLoadingReview] = useState(false);
   const [loadingConvert, setLoadingConvert] = useState(false);
 
@@ -96,6 +96,9 @@ function App() {
               <option value="Java">Java</option>
               <option value="C#">C#</option>
               <option value="Go">Go</option>
+              <option value="rust">rust</option>
+              <option value="c">C</option>
+              <option value="kotlin">kotlin</option>
             </select>
             <button onClick={convertCode} className="convert-btn">
               {loadingConvert ? "⏳ Converting..." : "Convert"}

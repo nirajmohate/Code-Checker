@@ -1,31 +1,50 @@
-const aiService = require("../services/ai.service");
+const generateContent = require("../services/ai.service");
 
-// --- Review code ---
-module.exports.getReview = async (req, res) => {
-  const { code } = req.body;
+exports.getReview = async (req, res) => {
+  try {
+    const { code } = req.body;
 
-  if (!code) {
-    return res.status(400).send("Code is required");
+    const prompt = `
+Review the following code and provide:
+1. Issues
+2. Improvements
+3. Optimized version
+
+Code:
+${code}
+`;
+
+    const result = await generateContent(prompt);
+
+    res.send(result);
+
+  } catch (error) {
+    console.error("Review error:", error);
+    res.status(500).send("Error reviewing code");
   }
-
-  const response = await aiService(
-    `Please review the following code for issues, readability, compatibility, and best practices:\n\n${code}`
-  );
-
-  res.send(response);
 };
 
-// --- Convert code ---
-module.exports.convertCode = async (req, res) => {
-  const { code, targetLang } = req.body;
 
-  if (!code || !targetLang) {
-    return res.status(400).send("Code and target language are required");
+exports.convertCode = async (req, res) => {
+  try {
+    const { code, targetLang } = req.body;
+
+    const prompt = `
+Convert the following code into ${targetLang}.
+Return ONLY the converted code.
+
+Code:
+${code}
+`;
+
+    const result = await generateContent(prompt);
+
+    res.json({
+      convertedCode: result
+    });
+
+  } catch (error) {
+    console.error("Convert error:", error);
+    res.status(500).send("Error converting code");
   }
-
-  const response = await aiService(
-    `Convert the following code into ${targetLang}. Keep functionality same and output only code:\n\n${code}`
-  );
-
-  res.json({ convertedCode: response });
 };
